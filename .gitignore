@@ -25,6 +25,8 @@ var/
 *.egg
 
 *.swp
+*.sqlite3
+secrets.py
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
