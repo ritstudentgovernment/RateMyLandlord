@@ -1,0 +1,22 @@
+---
+language: python
+python:
+  - "3.4"
+  - "pypy"
+install:
+  - pip install -q Django==1.9.1
+  - pip install -q django-appconf==1.0.1
+  - pip install -q django-appconf==1.0.1
+  - pip install -q django-compressor==2.0
+  - pip install -q django-static-precompiler==1.2
+  - pip install -q rcssmin==1.0.6
+  - pip install -q rjsmin==1.0.12
+  - pip install -q six==1.10.0
+  - pip install -q wheel==0.26.0
+script: nosetests
+    # We need to write tests -> whether they're a general test suite or what
+    # Potential ideas:
+    #   Builds the project with no errno
+    #   Send a get request at / -> returns 200
+    #   ???
+    #   Profit
