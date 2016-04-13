@@ -1,0 +1,62 @@
+
+
+.carousel {
+  @media (min-width: @screen-sm-min) { height: 500px; }
+  @media (min-width: @screen-md-min) { height: 550px; }
+  @media (min-width: @screen-lg-min) { height: 600px; }
+  background-position: center;
+  background-size: cover;
+  color: #fff;
+}
+
+.campus-carousel {
+  background-position: center;
+  background-size: cover;
+  color: #fff;
+  height: 200px;
+}
+
+.v-center {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.carousel-content {
+  @media (min-width: @screen-sm-min) {
+    position: absolute;
+  }
+}
+
+.carousel-title {
+  font-weight: 900;
+  background-color: @brand-primary;
+  padding: 15px;
+  line-height: 38px;
+  overflow: hidden;
+  margin: 0;
+}
+.carousel-title-rounded {
+  font-weight: 900;
+  color: #fff;
+  padding: 15px;
+  line-height: 38px;
+  overflow: hidden;
+  margin: 0;
+  border: 4px solid @brand-primary;
+  background-color: transparent;
+  border-radius: 10px!important;
+}
+
+.carousel-description {
+  margin: 40px 0;
+  font-size: 200%;
+}
+
+.carousel-search-icon {
+  margin-left: 10px;
+}
