@@ -28,7 +28,7 @@
             <a href="#">About</a>
           </li>
           <li class="">
-            <a href="#">Search</a>
+            <a href="{% url 'main:search' %}">Search</a>
           </li>
           <li class="">
             <a href="#">Review</a>
@@ -42,8 +42,10 @@
       </div>
     </div>
   </nav>
+  <div class="container">
   {% block content %}
 
   {% endblock  %}
+  </div>
 </body>
 </html>
