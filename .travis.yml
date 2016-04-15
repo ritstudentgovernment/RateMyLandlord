@@ -1,0 +1,9 @@
+---
+language: python
+python:
+- '3.4'
+before_install: openssl aes-256-cbc -K $encrypted_190351f7d750_key -iv $encrypted_190351f7d750_iv -in secrets.py.enc -out RateMyLandlord/secrets.py -d 
+install: pip install -r requirements.txt
+before_script:
+- python manage.py runserver &
+script: nosetests
