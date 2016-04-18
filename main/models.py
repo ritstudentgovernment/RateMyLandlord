@@ -19,7 +19,7 @@ class Property(models.Model):
     longitude = models.DecimalField(max_digits=9, decimal_places=6)
     furnished = models.BooleanField()
     rooms = models.PositiveSmallIntegerField()
-    complx = models.ForeignKey(Complex)
+    complx = models.ForeignKey(Complex,null=True)
 
 class Tag(models.Model):
     name = models.CharField(max_length=50)
