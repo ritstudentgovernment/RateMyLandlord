@@ -5,6 +5,7 @@
     <title>{% block title %}RateMyLandlord{% endblock %}</title>
     {% load staticfiles %}
     {% load compress %}
+    <script src="https://code.jquery.com/jquery-1.12.2.min.js" crossorigin="anonymous"></script>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <!-- Optional theme -->
@@ -42,10 +43,12 @@
       </div>
     </div>
   </nav>
-  <div class="container">
+
   {% block content %}
 
   {% endblock  %}
-  </div>
 </body>
+{% block scripts %}
+
+{% endblock %}
 </html>
