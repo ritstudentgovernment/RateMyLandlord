@@ -6,16 +6,21 @@ class SearchForm(forms.Form):
                                                            'type':'text',
                                                            'size':'100',
                                                            'placeholder' : 'Search by address or landlord name'}),
-                             label='')
-    max_dist = forms.IntegerField(max_value = 9999,
+                             label='',
+                             required=False)
+
+    max_dist = forms.DecimalField(max_value = 9999.99,
                                   min_value= 0,
                                   widget=forms.TextInput(attrs={'class':'form-control',
-                                                                'size':'4',
-                                                                'maxlength':'4'}),
-                                  label='Max Dist(mi) ')
+                                                                'size':'6',
+                                                                'maxlength':'6'}),
+                                  label='Max Dist(mi) ',
+                                  required=False)
+
     max_cost = forms.DecimalField(max_value = 9999.99,
                                   min_value= 0,
                                   widget=forms.TextInput(attrs={'class':'form-control',
                                                                 'size':'6',
                                                                 'maxlength':'6'}),
-                                  label='Max $$$ ')
+                                  label='Max $$$ ',
+                                  required=False)

@@ -2,30 +2,43 @@
 {% block content %}
 <div class="container-fluid">
     <div class="row">
-        <div class="col-xs-3 search-tiles">
+        <div class="col-sm-12 col-md-3 search-tiles">
+            {% for prop in properties %}
             <div class="square col-xs-12 wordwrap">
                 <div class="square-content" style="height:auto;">
                     <div class="row">
                         <div class="col-xs-9">
-                            <h3 style="color:black";>Park Point</h3>
-                            <p>American Campus Communities<br>90 reviews</p>
+
+                            <h3 style="color:black";>{{ prop.address }}</h3>
+                            <p>Landlord<br># of reviews</p>
                             <br>
-                            <footer>1/2 miles, 15 minute walk, 1 minute drive</footer>
+                            <footer>distance, walk time, drive time</footer>
                         </div>
                         <div class="col-xs-3">
-                            <h3 style="text-align: right;">$700 - 900</h3>
+                            <h3 style="text-align: right;">$MinCost- MaxCost</h3>
                         </div>
                     </div>
                 </div>
             </div>
+            {% endfor %}
         </div>
-        <div class="col-xs-9">
-            <form class="form-inline" role="form" method="get">
+        <div class="col-sm-12 col-md-9">
+            <form class="form-inline main" action="{% url 'main:search' %}" role="form"  method="get">
 
                 <div class="form-group">
-                    {{ search_form }}
+                    {% for field in search_form.visible_fields %}
+                        {{ field.label_tag }}
+                        {{ field }}
+                    {% endfor %}
                 </div>
+                <button type="submit" class="btn btn-default">search</button>
             </form>
+
+            {% for field in search_form.visible_fields %}
+                {% for err in field.errors %}
+                    <div class="field-error">{{ field.label_tag }} - {{ err }}</div>
+                {% endfor %}
+            {% endfor %}
             <div id="map" style="width: 100%; height: 600px;"></div>
         </div>
     </div>
@@ -34,7 +47,14 @@
 {% endblock %}
 {% block scripts %}
 {% load staticfiles %}
-<script src="{% static 'js/maps.js' %}"></script>
+<script src="{% static 'js\mapmarkers.js' %}"></script>
+<script>
+    {% for prop in properties %}
+    addMarker({{ prop.latitude }}, {{ prop.longitude }}, "{{ prop.address }}");
+    {% endfor %}
+</script>
+<script src="{% static 'js\maps.js' %}"></script>
 <script async defer src="http://maps.google.com/maps/api/js?key=AIzaSyDJjNySQiy6PHnHhG7w8qR_tEWGSEB-F8E&callback=initMap"></script>
+
 {% endblock %}
 
