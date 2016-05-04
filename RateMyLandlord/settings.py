@@ -145,7 +145,10 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.9/howto/static-files/
-
+# Email settings
+EMAIL_HOST = secrets.EMAIL_HOST
+EMAIL_HOST_USER = secrets.EMAIL_USER
+EMAIL_HOST_PASSWORD = secrets.EMAIL_PASSWORD
+EMAIL_PORT = secrets.EMAIL_PORT
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = secrets.EMAIL_USER

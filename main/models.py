@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+import hashlib, random, django
 
 class Landlord(models.Model):
     first_name = models.CharField(max_length=50)
@@ -33,7 +34,9 @@ class School(models.Model):
 
 class Account(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    residence = models.ForeignKey(Property)
+    activation_key = models.CharField(max_length=40)
+    key_expires = models.DateTimeField(default=django.utils.timezone.now)
+    residence = models.ForeignKey(Property, null=True)
     school = models.ForeignKey(School)
 
 class Review(models.Model):

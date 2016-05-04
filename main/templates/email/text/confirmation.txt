@@ -1,0 +1,7 @@
+Hi {{user.first_name}}!
+
+Thank you for signing up for RateMyLandlord!
+
+To activate your account, please click the following link
+
+{{url}}

@@ -2,19 +2,13 @@
 
 {% block content %}
 {% load staticfiles %}
-<div class="container-fluid carousel" style="background-image:url({% static "carousel.jpg" %})">
-    <div class="col-xs-12 col-sm-6 col-sm-offset-3" style="top:25%;
-         margin-top:15px;">
-        <h2 class="carousel-title text-center">RATE MY LANDLORD</h2>
-        <div class="carousel-description text-center">
-          <h3>Write and view reviews on local landlords and properties</h3>
-          <a class="btn btn-lg btn-primary" href="/search">
-            Search<span class="glyphicon glyphicon-search carousel-search-icon"></span>
-          </a>
-        </div>
-    </div>
-</div>
 
+<form action="/register/" method="post" role="form">
+  {% csrf_token %}
+  {{ register_form }}
+
+  <button type="submit" class="btn btn-default">Register</button>
+</form>
 <div class="footer">
     <div class="footer-left col-lg-6 col-md-6 col-sm-6">
       <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-4">
