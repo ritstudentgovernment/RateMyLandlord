@@ -69,4 +69,10 @@ class RegistrationForm(forms.Form):
         else:
             raise ValidationError('Your school does not participate in RateMyLandlord')
 
-
+class LoginForm(forms.Form):
+    username = forms.CharField(max_length=254,
+            widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Username'}))
+    password = forms.CharField(max_length=25,
+                widget=forms.TextInput(attrs={'class':'form-control','type':'password','placeholder':'Password'}),
+                label='Password')
+    
