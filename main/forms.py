@@ -70,9 +70,22 @@ class RegistrationForm(forms.Form):
             raise ValidationError('Your school does not participate in RateMyLandlord')
 
 class LoginForm(forms.Form):
-    username = forms.CharField(max_length=254,
-            widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Username'}))
+    email = forms.CharField(max_length=254,
+            widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Email'}))
     password = forms.CharField(max_length=25,
                 widget=forms.TextInput(attrs={'class':'form-control','type':'password','placeholder':'Password'}),
                 label='Password')
-    
+   
+    def clean_email(self):
+        try:
+            user = User.objects.get(email=self.cleaned_data['email'])
+        except:
+            user = None
+        if user:
+            if user.is_active:
+                return self.cleaned_data['email']
+            else:
+                raise ValidationError('You must first confirm your account!')
+        else:
+            raise ValidationError('Account does not exist')
+        
