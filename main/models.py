@@ -10,6 +10,12 @@ class Landlord(models.Model):
 class Complex(models.Model):
     name = models.CharField(max_length=150)
     landlord = models.ForeignKey(Landlord)
+    address = models.CharField(max_length=120)
+    city = models.CharField(max_length=100)
+    state = models.CharField(max_length=2)
+    zip_code = models.CharField(max_length=5)
+    latitude = models.DecimalField(max_digits=9, decimal_places=6)
+    longitude = models.DecimalField(max_digits=9, decimal_places=6)
 
 class Property(models.Model):
     address = models.CharField(max_length=120)
