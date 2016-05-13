@@ -11,7 +11,9 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 import os
+import ldap
 from RateMyLandlord import secrets
+from django_auth_ldap.config import LDAPSearch, GroupOfNamesType
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -112,6 +114,22 @@ DATABASES = {
     }
 }
 
+# LDAP Configuration
+AUTH_LDAP_SERVER_URI = "ldaps://ldap.rit.edu"
+
+AUTH_LDAP_BIND_DN = "uid=" + secrets.LDAP_USER + ",ou=People,dc=rit,dc=edu"
+AUTH_LDAP_BIND_PASSWORD = secrets.LDAP_PASSWORD
+AUTH_LDAP_USER_SEARCH = LDAPSearch("ou=People,dc=rit,dc=edu", ldap.SCOPE_SUBTREE, "(uid=%(user)s)")
+AUTH_LDAP_GROUP_SEARCH = LDAPSearch("ou=Groups,dc=rit,dc=edu", ldap.SCOPE_SUBTREE, "(objectClass=groupOfNames)")
+AUTH_LDAP_GROUP_TYPE = GroupOfNamesType()
+
+#Require student, prevent others
+AUTH_LDAP_REQUIRE_GROUP = "cn=student,ou=Groups,dc=rit,dc=edu"
+AUTH_LDAP_DENY_GROUP = "cn=staff,ou=Groups,dc=rit,dc=edu"
+AUTH_LDAP_DENY_GROUP = "cn=faculty,ou=Groups,dc=rit,dc=edu"
+AUTH_LDAP_DENY_GROUP = "cn=studemp,ou=Groups,dc=rit,dc=edu"
+
+AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend','django_auth_ldap.backend.LDAPBackend')
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators

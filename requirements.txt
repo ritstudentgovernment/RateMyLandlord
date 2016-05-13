@@ -2,9 +2,11 @@ bcrypt==2.0.0
 cffi==1.6.0
 Django==1.9.5
 django-appconf==1.0.2
+django-auth-ldap==1.2.8
 django-compressor==2.0
 django-static-precompiler==1.2
 pycparser==2.14
+pyldap==2.4.25.1
 rcssmin==1.0.6
 rjsmin==1.0.12
 six==1.10.0
