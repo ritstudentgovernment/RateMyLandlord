@@ -3,6 +3,7 @@ from .models import *
 from django.contrib.auth.models import User
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
+from django.contrib.auth.password_validation import validate_password 
 
 class SearchForm(forms.Form):
     search = forms.CharField(max_length=100,
@@ -35,16 +36,17 @@ class RegistrationForm(forms.Form):
                 widget=forms.TextInput(attrs={'class':'form-control','type':'password','placeholder':'Confirm Password'}),
                 label='Confirm Password')
 
-    def clean_password_confirm(self):
+    def clean(self):
+        super(RegistrationForm, self).clean()
         password = self.cleaned_data['password']
         password_confirm = self.cleaned_data['password_confirm']
-
+        
+        validate_password(password)
+        
         if not password_confirm:
             raise ValidationError('You must confirm your password!')
         if password != password_confirm:
             raise ValidationError('Passwords do not match!')
-
-        return password_confirm
 
     def clean_email(self):
         email = self.cleaned_data['email']

@@ -39,4 +39,14 @@ class FormTests(TestCase):
         form = RegistrationForm(data=form_data)
         self.assertFalse(form.is_valid())
 
+        # Test not strong password
+        form_data = {
+                        'first_name': 'First',
+                        'last_name': 'Last',
+                        'email': 'weakpassword@rit.edu',
+                        'password': '1',
+                        'password_confirm': '1',
+                    }
+        form = RegistrationForm(data=form_data)
+        self.assertFalse(form.is_valid())
 
